@@ -41,36 +41,39 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 function Header() {
   return (
-    <AppBar
-      position="fixed"
-      sx={{ backgroundColor: 'rgba(0, 0, 0, 0.7)', boxShadow: 'none' }}
-    >
-      <Toolbar>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}
-        >
-          <StyledLink
-            to="/"
-            sx={{ fontWeight: 'bold', fontSize: '24px', color: 'pink' }}
+    <>
+      <AppBar
+        position="fixed"
+        sx={{ backgroundColor: 'rgba(0, 0, 0, 0.6)', boxShadow: 'none' }}
+      >
+        <Toolbar>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}
           >
-            MIOVIE
-          </StyledLink>
-          <StyledLink to="/tv-shows">TV Shows</StyledLink>
-          <StyledLink to="/movies">Movies</StyledLink>
-        </Typography>
-        <Search>
-          <StyledInputBase
-            placeholder="search"
-            inputProps={{ 'aria-label': 'search' }}
-          />
-          <SearchIcon
-            sx={{ color: 'white', marginRight: '8px', cursor: 'pointer' }}
-          />
-        </Search>
-      </Toolbar>
-    </AppBar>
+            <StyledLink
+              to="/"
+              sx={{ fontWeight: 'bold', fontSize: '24px', color: 'pink' }}
+            >
+              MIOVIE
+            </StyledLink>
+            <StyledLink to="/tv-series">TV Series</StyledLink>
+            <StyledLink to="/movies">Movies</StyledLink>
+          </Typography>
+          <Search>
+            <StyledInputBase
+              placeholder="search"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+            <SearchIcon
+              sx={{ color: 'white', marginRight: '8px', cursor: 'pointer' }}
+            />
+          </Search>
+        </Toolbar>
+      </AppBar>
+      <Toolbar />
+    </>
   );
 }
 
