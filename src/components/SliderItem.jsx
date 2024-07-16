@@ -1,9 +1,17 @@
 import { Card, CardMedia, Box, Typography } from '@mui/material';
+import CardDetail from './CardDetail';
+import { useNavigate } from 'react-router-dom';
 
-const SliderItem = ({ movie }) => {
+const SliderItem = ({ item, category }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/${category}/${item.id}`);
+  };
+
   return (
-    <Box key={movie.id} sx={{ padding: 1 }}>
+    <Box key={item.id} sx={{ padding: 1 }}>
       <Card
+        onClick={handleClick}
         sx={{
           position: 'relative',
           borderRadius: 3,
@@ -21,10 +29,15 @@ const SliderItem = ({ movie }) => {
       >
         <CardMedia
           component="img"
+          loading="lazy"
           height="500"
-          image={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-          alt={movie.title}
-          sx={{ borderRadius: 3 }}
+          image={`https://image.tmdb.org/t/p/original${item.backdrop_path}`}
+          alt={item.title}
+          sx={{
+            borderRadius: 3,
+            objectFit: 'cover',
+            objectPosition: 'center',
+          }}
         />
         <Box
           className="overlay"
@@ -54,13 +67,15 @@ const SliderItem = ({ movie }) => {
           }}
         >
           <Typography variant="h4" component="div">
-            {movie.title}
+            {category === 'tv-series' ? item.name : item.title}
           </Typography>
           <Typography variant="body2" component="div">
-            {movie.overview}
+            {item.overview === ''
+              ? 'Lorem ipsum dolor sit amet, consectetur adipisicing.'
+              : item.overview}
           </Typography>
           <Typography variant="body2" component="div">
-            Rating: {Math.round(movie.vote_average)}
+            Rating: {Math.round(item.vote_average)}
           </Typography>
         </Box>
       </Card>

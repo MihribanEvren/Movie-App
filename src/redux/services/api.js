@@ -31,6 +31,17 @@ export const tvShowsApi = createApi({
   }),
 });
 
+export const searchMoviesAndTVShowsApi = createApi({
+  reducerPath: 'searchApi',
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  endpoints: (builder) => ({
+    searchMoviesAndTVShows: builder.query({
+      query: (searchTerm) => createRequest(`/search/multi?query=${searchTerm}`),
+    }),
+  }),
+});
+
 export const { useGetPopularMoviesQuery, useGetMovieDetailsQuery } = moviesApi;
 export const { useGetPopularTVShowsQuery, useGetTVShowDetailsQuery } =
   tvShowsApi;
+export const { useSearchMoviesAndTVShowsQuery } = searchMoviesAndTVShowsApi;

@@ -1,22 +1,22 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
-import Movies from './pages/Movies';
-import TVSeries from './pages/TVSeries';
+import ListPage from './pages/ListPage';
 import ErrorPage from './pages/ErrorPage';
 import Header from './components/Header';
-import Footer from './components/Footer';
+import SearchResultsPage from './pages/SearchResultsPage';
+import CardDetailPage from './pages/CardDetailPage';
 
 function router() {
   return (
     <div>
       <Header />
       <Routes>
+        <Route path="/search" element={<SearchResultsPage />} />
         <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/tv-series" element={<TVSeries />} />
+        <Route path="/:category" element={<ListPage />} />
+        <Route path="/:category/:id" element={<CardDetailPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      {/* <Footer /> */}
     </div>
   );
 }

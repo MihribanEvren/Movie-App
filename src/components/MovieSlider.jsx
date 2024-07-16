@@ -15,7 +15,7 @@ const MovieSlider = ({ children }) => {
   };
 
   return (
-    <Box sx={{ maxWidth: 1200, margin: '0 auto' }}>
+    <Box sx={{ maxWidth: 1200, margin: '20px auto' }}>
       <Slider {...settings}>{children}</Slider>
     </Box>
   );

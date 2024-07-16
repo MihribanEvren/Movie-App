@@ -1,13 +1,22 @@
 import { AppBar, Toolbar, Typography, InputBase } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { styled, alpha } from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setCategory } from '../redux/slices/categorySlice';
+import { useState } from 'react';
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const StyledLink = styled('button')(({ theme }) => ({
   color: 'white',
   textDecoration: 'none',
   marginRight: theme.spacing(4),
   fontSize: '18px',
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  '&:hover': {
+    textDecoration: 'none',
+  },
 }));
 
 const Search = styled('div')(({ theme }) => ({
@@ -40,6 +49,20 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 function Header() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = (category) => {
+    dispatch(setCategory(category));
+    navigate(`/${category}`);
+  };
+
+  const [input, setInput] = useState('');
+
+  const handleChange = (e) => {
+    setInput(e.target.value);
+  };
+
   return (
     <>
       <AppBar
@@ -53,20 +76,27 @@ function Header() {
             sx={{ flexGrow: 1, display: 'flex', alignItems: 'center' }}
           >
             <StyledLink
-              to="/"
+              onClick={() => handleClick('')}
               sx={{ fontWeight: 'bold', fontSize: '24px', color: 'pink' }}
             >
               MIOVIE
             </StyledLink>
-            <StyledLink to="/tv-series">TV Series</StyledLink>
-            <StyledLink to="/movies">Movies</StyledLink>
+            <StyledLink onClick={() => handleClick('tv-series')}>
+              TV Series
+            </StyledLink>
+            <StyledLink onClick={() => handleClick('movies')}>
+              Movies
+            </StyledLink>
           </Typography>
           <Search>
             <StyledInputBase
+              onChange={handleChange}
               placeholder="search"
+              value={input}
               inputProps={{ 'aria-label': 'search' }}
             />
             <SearchIcon
+              onClick={() => handleClick('search')}
               sx={{ color: 'white', marginRight: '8px', cursor: 'pointer' }}
             />
           </Search>

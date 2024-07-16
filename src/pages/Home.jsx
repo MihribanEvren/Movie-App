@@ -19,8 +19,8 @@ function Home() {
   return (
     <div>
       <MovieSlider>
-        {topFiveMovies.map((movie) => (
-          <SliderItem key={movie.id} movie={movie} />
+        {topFiveMovies.map((item) => (
+          <SliderItem key={item.id} item={item} category="movies" />
         ))}
       </MovieSlider>
     </div>
