@@ -1,0 +1,8 @@
+body {
+  background-color: #252525;
+  min-height: 100vh;
+  color: #e6e6e6;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
