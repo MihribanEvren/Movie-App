@@ -1,10 +1,10 @@
-import Banner from '../components/Banner';
+import React from 'react';
 import MovieSlider from '../components/MovieSlider';
+import SliderItem from '../components/SliderItem';
 import { useGetPopularMoviesQuery } from '../redux/services/api';
 
 function Home() {
   const { data: movies, isLoading, isError } = useGetPopularMoviesQuery();
-  console.log(movies);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -18,7 +18,11 @@ function Home() {
 
   return (
     <div>
-      <MovieSlider movies={topFiveMovies} />
+      <MovieSlider>
+        {topFiveMovies.map((movie) => (
+          <SliderItem key={movie.id} movie={movie} />
+        ))}
+      </MovieSlider>
     </div>
   );
 }
