@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 
 function router() {
   return (
-    <>
+    <div>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -16,8 +16,8 @@ function router() {
         <Route path="/tv-series" element={<TVSeries />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
-      <Footer />
-    </>
+      {/* <Footer /> */}
+    </div>
   );
 }
 
